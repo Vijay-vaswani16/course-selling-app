@@ -1,10 +1,12 @@
 const express = require('express');
-const Route = express.Router();
+const route = express.Router();
 const userController = require('../controllers/userController');
+const validate = require('../../middleWares/validations/validate');
+const { userSignupSchema, userSigninSchema } = require('../../middleWares/validations/userValidation');
 
-Route.post('/signup', userController.signup);
-Route.post('/signin', userController.signin);
-Route.post('/purchase-course', userController.purchaseCourse);
-Route.get('/', userController.myCourses);
+route.post('/signup', validate(userSignupSchema), userController.signup);
+route.post('/signin', validate(userSigninSchema), userController.signin);
+route.post('/purchase-course', userController.purchaseCourse);
+route.get('/my-courses', userController.myCourses);
 
-module.exports = Route;
+module.exports = route;

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const objectId = mongoose.Schema
+const objectId = mongoose.Schema.ObjectId
 
 
 const userSchema = new mongoose.Schema({

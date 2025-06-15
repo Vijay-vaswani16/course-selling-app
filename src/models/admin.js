@@ -15,5 +15,10 @@ const adminSchema = new mongoose.Schema({
         type: String,
         required: true,
     }, 
-    course: 
-})
+    course: {
+        type: objectId,
+    }
+});
+
+const admin = new mongoose.model('admin', adminSchema);
+module.exports = admin;

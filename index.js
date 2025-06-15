@@ -9,8 +9,7 @@ app.use(cors());
 app.use(express.json());
 require('dotenv').config();
 
-const mongoDB_connection_url = process.env.mongoDB_connection_url;
-mongoose.connect(mongoDB_connection_url)
+mongoose.connect(process.env.mongoDB_connection_url)
 .then(() => console.log('Connected to mongoDB Atlas server'))
 .catch((err) => console.log('Error Connecting to mongoDB atlas server', err))
 
@@ -18,9 +17,8 @@ const port = process.env.port;
 const adminBaseUrl = process.env.adminBaseUrl;
 const userBaseUrl = process.env.userBaseUrl;
 
-app.get(userBaseUrl, userRoute);
-app.get(adminBaseUrl, adminRoute);
-
+app.use(userBaseUrl, userRoute);
+app.use(adminBaseUrl, adminRoute);
 
 
 app.listen(port, console.log(`server is running on port: ${port}`));
